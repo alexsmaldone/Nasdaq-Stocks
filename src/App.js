@@ -15,7 +15,6 @@ function App() {
     </tr>
   ));
 
-  console.log(stocks);
   return (
     <div className="page-container">
       <h1>Nasdaq-100 Stocks</h1>
