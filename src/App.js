@@ -4,8 +4,8 @@ import { stocks } from "./stocks";
 function App() {
   const stockList = stocks.map((stock, i) => (
     <tr key={i}>
-      <td>{stock}</td>
-      <td>Apple Inc.</td>
+      <td>{stock.Ticker}</td>
+      <td>{stock.Company}</td>
       <td>$0.53</td>
       <td>$35.56</td>
       <td>20.0%</td>
