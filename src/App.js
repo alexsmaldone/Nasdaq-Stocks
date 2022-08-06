@@ -1,5 +1,5 @@
 import "./App.css";
-import { stocks } from "./stocks";
+import { stocks } from "./stockAPI/stocks.js";
 
 function App() {
   const stockList = stocks.map((stock, i) => (
