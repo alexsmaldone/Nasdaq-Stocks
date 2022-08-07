@@ -17,7 +17,11 @@ const stockHistoryLookup = async (ticker) => {
     throw new Error(message);
   }
   const historyData = await historyResponse.json();
-  return historyData;
+  return {
+    "12mosPrice": historyData["c"][0],
+    "6mosPrice": historyData["c"][6],
+    "3mosPrice": historyData["c"][9],
+  };
 };
 
 const stockQuoteLookup = async (ticker) => {
@@ -29,14 +33,29 @@ const stockQuoteLookup = async (ticker) => {
     throw new Error(message);
   }
   const quoteData = await quoteResponse.json();
-  return quoteData;
+  return quoteData.c;
 };
 
-const stockHistory = await stockHistoryLookup("AAPL");
-const stockQuote = await stockQuoteLookup("AAPL");
-console.log(
-  "STOCKHISTORY=======",
-  stockHistory,
-  "STOCKQUOTE========",
-  stockQuote
-);
+const stockPercentChange = async (ticker) => {
+  const stockHistory = await stockHistoryLookup("AAPL");
+  const stockQuote = await stockQuoteLookup("AAPL");
+
+  const threeMonthChange =
+    ((stockQuote - stockHistory["3mosPrice"]) / stockHistory["3mosPrice"]) *
+    100;
+  const sixMonthChange =
+    ((stockQuote - stockHistory["6mosPrice"]) / stockHistory["6mosPrice"]) *
+    100;
+  const twelveMonthChange =
+    ((stockQuote - stockHistory["12mosPrice"]) / stockHistory["12mosPrice"]) *
+    100;
+
+  return `twelve: ${twelveMonthChange.toFixed(
+    1
+  )}%, six: ${sixMonthChange.toFixed(1)}%, three: ${threeMonthChange.toFixed(
+    1
+  )}%,  `;
+};
+
+const result = await stockPercentChange("AAPL");
+console.log(result);
