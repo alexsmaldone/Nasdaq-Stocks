@@ -9,15 +9,22 @@ const stockLookup = async (ticker) => {
   const endTime = Math.floor(parseInt(currentTime) / 1000);
   const startTime = endTime - sixMonths;
 
-  const url = `${basePath}/stock/candle?symbol=${ticker}&resolution=M&from=${startTime}&to=${endTime}&token=${api_key}`;
+  const priceHistory = `${basePath}/stock/candle?symbol=${ticker}&resolution=M&from=${startTime}&to=${endTime}&token=${api_key}`;
+  const recentQuote = `${basePath}/quote?symbol=${ticker}&token=${api_key}`;
 
-  const response = await fetch(url);
-  if (!response.ok) {
-    const message = `An error has occured: ${response.status}`;
+  const historyResponse = await fetch(priceHistory);
+  if (!historyResponse.ok) {
+    const message = `An error has occured: ${historyResponse.status}`;
     throw new Error(message);
   }
-
-  return await response.json();
+  const quoteResponse = await fetch(recentQuote);
+  if (!quoteResponse.ok) {
+    const message = `An error has occured: ${quoteResponse.status}`;
+    throw new Error(message);
+  }
+  const historyData = await historyResponse.json();
+  const quoteData = await quoteResponse.json();
+  return [historyData, quoteData];
 };
 
 const newStock = await stockLookup("AAPL");
