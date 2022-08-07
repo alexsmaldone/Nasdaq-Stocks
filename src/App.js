@@ -6,10 +6,7 @@ function App() {
     <tr key={i}>
       <td>{stock.Ticker}</td>
       <td>{stock.Company}</td>
-      <td>$0.53</td>
       <td>$35.56</td>
-      <td>20.0%</td>
-      <td>20.0%</td>
       <td>20.0%</td>
       <td>20.0%</td>
     </tr>
@@ -24,12 +21,9 @@ function App() {
             <tr>
               <th>Ticker</th>
               <th>Name</th>
-              <th>Market Cap ($B)</th>
               <th>Last Close Price</th>
-              <th>YTD % Change</th>
               <th>3-Month % Change</th>
               <th>6-Month % Change</th>
-              <th>12-Month % Change</th>
             </tr>
           </thead>
           <tbody>{stockList}</tbody>
