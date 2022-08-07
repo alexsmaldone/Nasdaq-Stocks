@@ -9,6 +9,7 @@ function App() {
       <td>$35.56</td>
       <td>20.0%</td>
       <td>20.0%</td>
+      <td>20.0%</td>
     </tr>
   ));
 
@@ -24,6 +25,7 @@ function App() {
               <th>Last Close Price</th>
               <th>3-Month % Change</th>
               <th>6-Month % Change</th>
+              <th>12-Month % Change</th>
             </tr>
           </thead>
           <tbody>{stockList}</tbody>

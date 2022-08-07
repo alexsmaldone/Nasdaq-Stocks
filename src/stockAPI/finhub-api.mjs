@@ -2,7 +2,7 @@ import fetch from "node-fetch";
 
 const basePath = "https://finnhub.io/api/v1";
 const api_key = "cbms83qad3i7vqvd195g";
-const sixMonths = 24 * 60 * 60 * 182.5;
+const sixMonths = 24 * 60 * 60 * 365;
 
 const stockLookup = async (ticker) => {
   const currentTime = Date.now();
