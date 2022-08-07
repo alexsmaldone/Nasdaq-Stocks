@@ -50,11 +50,11 @@ const stockPercentChange = async (ticker) => {
     ((stockQuote - stockHistory["12mosPrice"]) / stockHistory["12mosPrice"]) *
     100;
 
-  return `twelve: ${twelveMonthChange.toFixed(
-    1
-  )}%, six: ${sixMonthChange.toFixed(1)}%, three: ${threeMonthChange.toFixed(
-    1
-  )}%,  `;
+  return {
+    twelve: `${twelveMonthChange.toFixed(1)}%`,
+    six: `${sixMonthChange.toFixed(1)}%`,
+    three: `${threeMonthChange.toFixed(1)}%`,
+  };
 };
 
 const result = await stockPercentChange("AAPL");
